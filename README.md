@@ -211,7 +211,7 @@ NeuTherm-PINN/
 ## Installation
 
 ```bash
-git clone https://github.com/carcaraa/neutherm-pinn.git
+git clone https://github.com/carcaraa/neutherm-pinn-v2.git
 cd neutherm-pinn
 pip install -e ".[dev]"
 ```
@@ -341,7 +341,7 @@ If you use this code in your research, please cite:
   title  = {NeuTherm-PINN: Physics-Informed Neural Networks for Coupled Neutronics-Thermal Hydraulics},
   author = {Hughes, Guilherme de Sena},
   year   = {2026},
-  url    = {https://github.com/carcaraa/neutherm-pinn}
+  url    = {https://github.com/carcaraa/neutherm-pinn-v2}
 }
 ```
 
