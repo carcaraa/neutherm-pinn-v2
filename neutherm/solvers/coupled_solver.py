@@ -30,6 +30,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
+from neutherm._compat import trapezoid
 from neutherm.physics.parameters import ProblemConfig
 from neutherm.physics.cross_sections import (
     evaluate_cross_sections_np,
@@ -169,10 +170,11 @@ def solve_coupled(
         # =====================================================================
         # Step 2: Solve neutron diffusion on the full pin cell
         # =====================================================================
-        # The zero-flux BC at R_cell is physically correct here: at the
-        # Wigner-Seitz cell boundary, the net current is zero by symmetry
-        # (reflection from neighboring cells). The zero-flux condition
-        # approximates this for the fundamental mode.
+        # The reflective BC (zero net current, dφ/dr = 0) at R_cell is the
+        # physically correct condition here: at the Wigner-Seitz cell
+        # boundary, neighboring pin cells are mirror images of each other,
+        # so the net neutron current vanishes by symmetry. This is what
+        # build_diffusion_matrix implements at the outer boundary.
         phi1, phi2, k_eff = solve_diffusion(
             r_full_cm, xs,
             tol=solver.power_iteration_tol,
@@ -194,7 +196,7 @@ def solve_coupled(
         )
 
         # Integrate over the fuel cross-section: q' = ∫ q''' 2πr dr [W/cm]
-        q_linear_unnorm = np.trapezoid(q_unnorm * 2 * np.pi * r_fuel_cm, r_fuel_cm)
+        q_linear_unnorm = trapezoid(q_unnorm * 2 * np.pi * r_fuel_cm, r_fuel_cm)
 
         # Scale all fluxes so that q' = power_level
         if q_linear_unnorm > 0:

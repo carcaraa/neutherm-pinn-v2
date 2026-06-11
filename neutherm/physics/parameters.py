@@ -150,7 +150,8 @@ class PINNParams:
     lambda_pde: float = 1.0
     lambda_bc: float = 10.0
     lambda_data: float = 0.1
-    adaptive_weights: bool = True
+    lambda_power: float = 10.0  # Weight of the power-normalization constraint
+    adaptive_weights: bool = False  # NOTE: not implemented yet (roadmap)
 
 
 @dataclass

@@ -1,0 +1,41 @@
+======================================================================
+PINN Training (Full Pin Cell)
+======================================================================
+  Device: cpu
+  Parameters: 12,867 + 1 (phi_scale); k_eff via integral balance
+  Domain: [0, 0.7174] cm (fuel: 0.4096 cm)
+  Collocation: 651 fuel + 1349 moderator
+  Target power: 200.0 W/cm
+  T_surface (gap model): 757.8 K
+  T head scale (q'/4πk): 389.3 K
+  phi_scale init: 8.773e+13
+  Epochs: 6000
+----------------------------------------------------------------------
+  Epoch     1/6000  total=59393.726562  pde=42.0395  bc=5935.0884  pw=0.0803  q'=  143.3  k_eff=1.31863  lr=1.00e-03
+  Epoch   300/6000  total=2.390691  pde=2.1510  bc=0.0004  pw=0.0236  q'=  169.3  k_eff=1.31875  lr=9.94e-04
+  Epoch   600/6000  total=1.892480  pde=1.6686  bc=0.0003  pw=0.0221  q'=  170.3  k_eff=1.31602  lr=9.76e-04
+  Epoch   900/6000  total=1.708036  pde=1.5113  bc=0.0002  pw=0.0195  q'=  172.1  k_eff=1.31286  lr=9.46e-04
+  Epoch  1200/6000  total=1.440919  pde=1.2788  bc=0.0001  pw=0.0161  q'=  174.6  k_eff=1.30931  lr=9.05e-04
+  Epoch  1500/6000  total=1.227718  pde=1.0874  bc=0.0001  pw=0.0140  q'=  176.4  k_eff=1.30522  lr=8.54e-04
+  Epoch  1800/6000  total=1.106994  pde=0.9840  bc=0.0001  pw=0.0123  q'=  177.9  k_eff=1.30109  lr=7.94e-04
+  Epoch  2100/6000  total=1.024211  pde=0.9167  bc=0.0000  pw=0.0107  q'=  179.3  k_eff=1.29702  lr=7.27e-04
+  Epoch  2400/6000  total=0.983266  pde=0.8803  bc=0.0000  pw=0.0103  q'=  179.7  k_eff=1.29291  lr=6.55e-04
+  Epoch  2700/6000  total=0.948328  pde=0.8567  bc=0.0000  pw=0.0091  q'=  180.9  k_eff=1.28941  lr=5.79e-04
+  Epoch  3000/6000  total=0.917107  pde=0.8290  bc=0.0000  pw=0.0088  q'=  181.3  k_eff=1.28638  lr=5.01e-04
+  Epoch  3300/6000  total=0.934233  pde=0.8467  bc=0.0000  pw=0.0087  q'=  181.3  k_eff=1.28395  lr=4.22e-04
+  Epoch  3600/6000  total=0.903762  pde=0.8155  bc=0.0000  pw=0.0088  q'=  181.2  k_eff=1.28208  lr=3.46e-04
+  Epoch  3900/6000  total=0.913685  pde=0.8306  bc=0.0000  pw=0.0083  q'=  181.8  k_eff=1.28063  lr=2.74e-04
+  Epoch  4200/6000  total=0.908499  pde=0.8257  bc=0.0000  pw=0.0083  q'=  181.8  k_eff=1.27957  lr=2.07e-04
+  Epoch  4500/6000  total=0.911073  pde=0.8285  bc=0.0000  pw=0.0082  q'=  181.8  k_eff=1.27874  lr=1.47e-04
+  Epoch  4800/6000  total=0.880669  pde=0.8029  bc=0.0000  pw=0.0078  q'=  182.4  k_eff=1.27823  lr=9.64e-05
+  Epoch  5100/6000  total=0.894519  pde=0.8104  bc=0.0000  pw=0.0084  q'=  181.7  k_eff=1.27787  lr=5.54e-05
+  Epoch  5400/6000  total=0.895804  pde=0.8134  bc=0.0000  pw=0.0082  q'=  181.9  k_eff=1.27770  lr=2.54e-05
+  Epoch  5700/6000  total=0.896499  pde=0.8141  bc=0.0000  pw=0.0082  q'=  181.9  k_eff=1.27764  lr=7.15e-06
+  Epoch  6000/6000  total=0.917255  pde=0.8351  bc=0.0000  pw=0.0082  q'=  181.9  k_eff=1.27762  lr=1.00e-06
+----------------------------------------------------------------------
+  Best epoch: 4665
+  Learned k_eff: 1.278382
+  Learned phi_scale: 1.6957e+14
+======================================================================
+PINN saved to results/pinn_model.pt
+Training curves saved to results/pinn_training.png

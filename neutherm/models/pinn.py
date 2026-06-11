@@ -59,6 +59,7 @@ class PINNModel(nn.Module):
         activation: str = "tanh",
         r_fuel: float = 0.4096,
         r_cell: float = 0.7174,
+        T_out_scale: float = 1.0,
     ):
         super().__init__()
 
@@ -67,6 +68,17 @@ class PINNModel(nn.Module):
 
         self.r_fuel = r_fuel
         self.r_cell = r_cell
+        # Stored so checkpoints can rebuild the exact architecture without
+        # relying on the YAML config still matching the trained model.
+        self.hidden_layers = list(hidden_layers)
+        self.activation_name = activation
+        # Physical scale of the temperature head [K]. The raw network output
+        # is O(1); multiplying by the expected fuel ΔT (≈ q'/(4πk̄), the
+        # classic conduction estimate) keeps the head's gradients well
+        # conditioned. With T_out_scale = 1 (legacy default) the head must
+        # grow its own weights by ~10² before the heat-conduction residual
+        # produces any signal, and training stalls on a flat-T plateau.
+        self.T_out_scale = float(T_out_scale)
 
         # Smooth transition width: ~5% of fuel radius gives a sharp
         # but differentiable interface
@@ -137,8 +149,9 @@ class PINNModel(nn.Module):
         phi1 = torch.nn.functional.softplus(out[:, 0:1])
         phi2 = torch.nn.functional.softplus(out[:, 1:2])
 
-        # Temperature: raw output (deviation from T_base, added later)
-        T = out[:, 2:3]
+        # Temperature: deviation from T_base (added by the caller), scaled
+        # to the physical ΔT magnitude so the raw head output stays O(1)
+        T = self.T_out_scale * out[:, 2:3]
 
         return {"phi1": phi1, "phi2": phi2, "T": T}
 

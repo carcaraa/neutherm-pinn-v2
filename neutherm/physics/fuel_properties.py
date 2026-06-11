@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
 Thermal properties of UO2 fuel and heat transfer models.
 
@@ -17,7 +15,7 @@ References
         Journal of Nuclear Materials, 279(1), 1-18.
 """
 
-
+from __future__ import annotations
 
 from typing import TYPE_CHECKING
 

@@ -10,6 +10,7 @@ fuel_properties : UO2 thermal conductivity and heat generation.
 
 from neutherm.physics.cross_sections import (
     CrossSectionSet,
+    build_pin_cell_xs_np,
     evaluate_cross_sections_np,
     evaluate_cross_sections_torch,
 )
@@ -32,6 +33,7 @@ __all__ = [
     "NeutronicsParams",
     "ThermalParams",
     "CrossSectionSet",
+    "build_pin_cell_xs_np",
     "evaluate_cross_sections_np",
     "evaluate_cross_sections_torch",
     "fuel_conductivity_np",

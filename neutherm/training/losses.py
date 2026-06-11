@@ -80,7 +80,7 @@ class WeightedMSELoss(nn.Module):
         -------
         dict[str, torch.Tensor]
             Individual losses and the total:
-            'loss_phi1', 'loss_phi2', 'loss_temperature', 'loss_keff', 'total'.
+            'loss_phi1', 'loss_phi2', 'loss_temperature', 'loss_k_eff', 'total'.
         """
         losses = {}
 

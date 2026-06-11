@@ -84,12 +84,13 @@ pinn:
   learning_rate: 1.0e-3
   n_collocation: 2000      # Interior collocation points
   n_boundary: 50           # Boundary points
-  epochs: 20000
+  epochs: 6000
   # Loss weights
   lambda_pde: 1.0
   lambda_bc: 10.0
   lambda_data: 0.1         # Weight for optional data term
-  adaptive_weights: true   # Use inverse Dirichlet weighting
+  lambda_power: 10.0       # Weight for the power-normalization constraint
+  adaptive_weights: false  # Inverse Dirichlet weighting — NOT implemented yet
 
 output:
   results_dir: "results/"

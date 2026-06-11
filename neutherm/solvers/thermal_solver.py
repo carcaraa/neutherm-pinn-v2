@@ -25,6 +25,7 @@ from __future__ import annotations
 import numpy as np
 from scipy import linalg as la
 
+from neutherm._compat import trapezoid
 from neutherm.physics.parameters import GeometryParams, ThermalParams
 from neutherm.physics.fuel_properties import fuel_conductivity_np
 
@@ -184,7 +185,7 @@ def solve_thermal(
     # Compute the fuel surface temperature from the total pin power
     # Total linear heat rate: q' = ∫₀^{R_f} q'''(r) * 2πr dr
     # Numerical integration using the trapezoidal rule
-    q_linear = np.trapezoid(q_volumetric * 2 * np.pi * r, r)
+    q_linear = trapezoid(q_volumetric * 2 * np.pi * r, r)
     T_surface = compute_surface_temperature(q_linear, geom, thermal)
 
     # Build and solve the linear system

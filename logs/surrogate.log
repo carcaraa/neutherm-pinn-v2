@@ -1,0 +1,36 @@
+Training on: cpu
+Data split: 4000 train / 500 val / 500 test
+Model parameters: 115,709
+Hidden layers: [128, 128, 128, 128]
+Activation: tanh
+  Epoch     1/5000  train=2.208465  val=0.792323  lr=1.00e-03  *
+  Epoch   250/5000  train=0.000141  val=0.000105  lr=9.94e-04  
+  Epoch   500/5000  train=0.000032  val=0.000031  lr=9.76e-04  *
+  Epoch   750/5000  train=0.000304  val=0.000352  lr=9.46e-04  
+  Epoch  1000/5000  train=0.000041  val=0.000052  lr=9.05e-04  
+  Epoch  1250/5000  train=0.000026  val=0.000030  lr=8.54e-04  
+  Epoch  1500/5000  train=0.000093  val=0.000118  lr=7.94e-04  
+  Epoch  1750/5000  train=0.000162  val=0.000231  lr=7.27e-04  
+  Epoch  2000/5000  train=0.000381  val=0.000905  lr=6.55e-04  
+  Epoch  2250/5000  train=0.000007  val=0.000026  lr=5.79e-04  
+  Epoch  2500/5000  train=0.000010  val=0.000014  lr=5.00e-04  
+  Epoch  2750/5000  train=0.000011  val=0.000044  lr=4.22e-04  
+  Epoch  3000/5000  train=0.000004  val=0.000003  lr=3.46e-04  
+  Epoch  3250/5000  train=0.000003  val=0.000005  lr=2.74e-04  
+  Epoch  3500/5000  train=0.000006  val=0.000003  lr=2.07e-04  
+  Epoch  3750/5000  train=0.000002  val=0.000005  lr=1.47e-04  
+  Epoch  4000/5000  train=0.000001  val=0.000001  lr=9.64e-05  
+  Epoch  4250/5000  train=0.000001  val=0.000001  lr=5.54e-05  
+  Epoch  4500/5000  train=0.000000  val=0.000000  lr=2.54e-05  
+  Epoch  4750/5000  train=0.000000  val=0.000000  lr=7.15e-06  
+  Epoch  5000/5000  train=0.000000  val=0.000000  lr=1.00e-06  
+
+Best model at epoch 4983 (val_loss=0.000000)
+
+Test set relative L2 errors:
+  phi1:        0.0000 (0.00%)
+  phi2:        0.0000 (0.00%)
+  temperature: 0.0000 (0.00%)
+  k_eff:       0.0000 (0.00%)
+Model saved to results/surrogate_model.pt
+Training curves saved to results/surrogate_training.png

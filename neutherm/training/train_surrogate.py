@@ -367,8 +367,15 @@ def train_surrogate(
         model.eval()
         test_loader = DataLoader(test_ds, batch_size=len(test_ds), shuffle=False)
 
-        # Move norm stats to device for denormalization
-        ns = norm_stats
+        # Move norm stats to the training device so denormalization works
+        # on GPU as well (predictions live on `device`; the stats were
+        # computed on CPU tensors in prepare_data).
+        ns = NormStats(
+            **{
+                f.name: getattr(norm_stats, f.name).to(device)
+                for f in NormStats.__dataclass_fields__.values()
+            }
+        )
 
         with torch.no_grad():
             for batch in test_loader:
@@ -451,6 +458,8 @@ def save_model(
                 "n_inputs": model.n_inputs,
                 "n_radial_fuel": model.n_radial_fuel,
                 "n_radial_total": model.n_radial_total,
+                "hidden_layers": model.hidden_layers,
+                "activation": model.activation_name,
             },
         },
         path,

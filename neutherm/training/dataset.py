@@ -55,8 +55,12 @@ class ParametricDataset:
     - Output fields (1D arrays on radial mesh): phi1, phi2, temperature, q_vol
     - Output scalar: k_eff
 
-    All output fields are interpolated onto a common radial mesh so they
-    can be stacked into tensors for training.
+    All samples share the same *number* of mesh points (set by n_radial /
+    n_radial_mod), which is what allows stacking into tensors. The physical
+    mesh coordinates differ between samples when r_fuel varies — fields are
+    NOT interpolated onto a common physical mesh. The stored r_fuel_mesh /
+    r_full_mesh come from the first successful sample and serve only as a
+    representative axis for plotting.
 
     Attributes
     ----------

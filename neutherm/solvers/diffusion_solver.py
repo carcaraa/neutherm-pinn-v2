@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
 Two-group neutron diffusion solver in 1D cylindrical geometry.
 
@@ -11,12 +9,15 @@ to find the dominant eigenvalue k_eff and corresponding flux shape.
 
 The discretization uses the standard central difference scheme for the
 cylindrical Laplacian, with special treatment at r=0 (L'Hôpital's rule)
-and zero-flux boundary at r=R (extrapolated boundary).
+and a reflective (zero-current, dφ/dr = 0) boundary at r = R_cell,
+consistent with the Wigner-Seitz pin-cell approximation.
 
 References
 ----------
 .. [1] Duderstadt & Hamilton, "Nuclear Reactor Analysis" (1976), Ch. 5-7.
 """
+
+from __future__ import annotations
 
 import numpy as np
 from scipy import linalg as la

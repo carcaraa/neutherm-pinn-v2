@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
 Temperature-dependent macroscopic cross sections with Doppler feedback.
 
@@ -29,7 +27,7 @@ fission cross sections in thermal reactors (negative Doppler coefficient),
 which is the primary safety feedback mechanism in LWRs.
 """
 
-
+from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -384,7 +382,13 @@ def build_pin_cell_xs_np(
     sigma_s12 = np.zeros(N)
 
     # --- Fuel region: temperature-dependent ---
-    T_on_mesh = T_fuel[:n_fuel] if len(T_fuel) >= n_fuel else T_fuel
+    if len(T_fuel) < n_fuel:
+        raise ValueError(
+            f"T_fuel has {len(T_fuel)} points but the fuel region of the "
+            f"mesh has {n_fuel} points (r <= {r_fuel_cm} cm). The fuel "
+            "temperature must be defined on every fuel mesh point."
+        )
+    T_on_mesh = T_fuel[:n_fuel]
     fuel_xs = evaluate_cross_sections_np(T_on_mesh, params)
 
     D1[fuel_mask] = fuel_xs.D1

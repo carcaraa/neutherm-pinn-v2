@@ -130,6 +130,10 @@ class SurrogateModel(nn.Module):
         self.n_inputs = n_inputs
         self.n_radial_fuel = n_radial_fuel
         self.n_radial_total = n_radial_total
+        # Stored so checkpoints can rebuild the exact architecture without
+        # relying on the YAML config still matching the trained model.
+        self.hidden_layers = list(hidden_layers)
+        self.activation_name = activation
 
         activation_fn = {
             "tanh": nn.Tanh(),
